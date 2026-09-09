@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#14151A"
+  >
+
+  <meta
+    name="description"
+    content="IronLog — a simple workout tracker for logging workouts, exercises, progress, and personal records."
+  >
+
+  <title>IronLog — Workout Tracker</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+
+<body>
+
+  <!-- ================================================================
+       APP SHELL
+  ================================================================= -->
+
+  <div class="app">
+
+
+    <!-- ============================================================
+         DESKTOP SIDEBAR
+    ============================================================= -->
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+      aria-label="Main navigation"
+    >
+
+      <!-- Brand -->
+      <div class="sidebar-brand">
+        <span class="brand-mark">
+          Iron<em>Log</em>
+        </span>
+      </div>
+
+
+      <!-- Navigation -->
+      <nav
+        class="sidebar-nav"
+        id="sidebarNav"
+        aria-label="Primary navigation"
+      >
+
+        <!-- Dashboard -->
+        <button
+          class="nav-item active"
+          type="button"
+          data-view="dashboard"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="nav-icon"
+            aria-hidden="true"
+          >
+            <path d="M3 13h4v8H3zM10 3h4v18h-4zM17 8h4v13h-4z"/>
+          </svg>
+
+          <span>Dashboard</span>
+        </button>
+
+
+        <!-- Workout -->
+        <button
+          class="nav-item"
+          type="button"
+          data-view="workout"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="nav-icon"
+            aria-hidden="true"
+          >
+            <path d="M6.5 6.5l11 11M4 8l3-3 3 3-3 3-3-3zm10 10l3-3 3 3-3 3-3-3zM2 13l2-2 9 9-2 2-9-9zm9-9l2-2 9 9-2 2-9-9z"/>
+          </svg>
+
+          <span>Workout</span>
+        </button>
+
+
+        <!-- Exercise Library -->
+        <button
+          class="nav-item"
+          type="button"
+          data-view="library"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="nav-icon"
+            aria-hidden="true"
+          >
+            <path d="M4 4h4v16H4zM10 4h1v16h-1zM14 6l4-1 3 15-4 1z"/>
+          </svg>
+
+          <span>Exercises</span>
+        </button>
+
+
+        <!-- Progress -->
+        <button
+          class="nav-item"
+          type="button"
+          data-view="progress"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="nav-icon"
+            aria-hidden="true"
+          >
+            <path d="M4 19V9m6 10V4m6 15v-7m6 7V11"/>
+          </svg>
+
+          <span>Progress</span>
+        </button>
+
+
+        <!-- History -->
+        <button
+          class="nav-item"
+          type="button"
+          data-view="history"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="nav-icon"
+            aria-hidden="true"
+          >
+            <path d="M3 3v5h5M3.05 13a9 9 0 1 0 2-6.6L3 8"/>
+            <path d="M12 7v5l4 2"/>
+          </svg>
+
+          <span>History</span>
+        </button>
+
+
+        <!-- Profile -->
+        <button
+          class="nav-item"
+          type="button"
+          data-view="profile"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="nav-icon"
+            aria-hidden="true"
+          >
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM3 22c0-4.4 4-8 9-8s9 3.6 9 8"/>
+          </svg>
+
+          <span>Profile</span>
+        </button>
+
+      </nav>
+
+
+      <!-- Settings -->
+      <button
+        class="sidebar-settings"
+        type="button"
+        data-view="settings"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="nav-icon"
+          aria-hidden="true"
+        >
+          <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"/>
+        </svg>
+
+        <span>Settings</span>
+      </button>
+
+    </aside>
+
+
+
+    <!-- ================================================================
+         MAIN CONTENT
+    ================================================================= -->
+
+    <div class="main-wrap">
+
+
+      <!-- ============================================================
+           TOP BAR
+      ============================================================= -->
+
+      <header
+        class="topbar"
+        id="topbar"
+      >
+
+        <!-- Back button -->
+        <button
+          class="icon-btn back-btn hidden"
+          id="backBtn"
+          type="button"
+          aria-label="Go back"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+
+
+        <!-- Page title -->
+        <h1
+          class="topbar-title"
+          id="topbarTitle"
+        >
+          Dashboard
+        </h1>
+
+
+        <!-- Profile shortcut -->
+        <button
+          class="icon-btn"
+          id="profileShortcut"
+          type="button"
+          data-view="profile"
+          data-show-back="true"
+          aria-label="Open profile"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM3 22c0-4.4 4-8 9-8s9 3.6 9 8"/>
+          </svg>
+        </button>
+
+
+        <!-- Settings shortcut -->
+        <button
+          class="icon-btn"
+          id="settingsShortcut"
+          type="button"
+          data-view="settings"
+          data-show-back="true"
+          aria-label="Open settings"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+
+      </header>
+
+
+
+      <!-- ================================================================
+           VIEWS
+      ================================================================= -->
+
+      <main
+        class="views"
+        id="views"
+      >
+
+
+        <!-- ==========================================================
+             DASHBOARD
+        =========================================================== -->
+
+        <section
+          class="view active"
+          id="view-dashboard"
+          data-view="dashboard"
+        >
+          <div id="dashboardContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             WORKOUT
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-workout"
+          data-view="workout"
+        >
+          <div id="workoutContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             EXERCISE LIBRARY
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-library"
+          data-view="library"
+        >
+          <div id="libraryContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             PROGRESS
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-progress"
+          data-view="progress"
+        >
+          <div id="progressContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             HISTORY
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-history"
+          data-view="history"
+        >
+          <div id="historyContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             CALENDAR
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-calendar"
+          data-view="calendar"
+        >
+          <div id="calendarContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             PERSONAL RECORDS
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-prs"
+          data-view="prs"
+        >
+          <div id="prsContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             PROFILE
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-profile"
+          data-view="profile"
+        >
+          <div id="profileContent"></div>
+        </section>
+
+
+        <!-- ==========================================================
+             SETTINGS
+        =========================================================== -->
+
+        <section
+          class="view"
+          id="view-settings"
+          data-view="settings"
+        >
+          <div id="settingsContent"></div>
+        </section>
+
+      </main>
+
+    </div>
+
+
+
+    <!-- ================================================================
+         MOBILE BOTTOM NAVIGATION
+    ================================================================= -->
+
+    <nav
+      class="bottom-nav"
+      id="bottomNav"
+      aria-label="Mobile navigation"
+    >
+
+      <!-- Home -->
+      <button
+        class="bn-item active"
+        type="button"
+        data-view="dashboard"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="nav-icon"
+          aria-hidden="true"
+        >
+          <path d="M3 13h4v8H3zM10 3h4v18h-4zM17 8h4v13h-4z"/>
+        </svg>
+
+        <span>Home</span>
+      </button>
+
+
+      <!-- Exercises -->
+      <button
+        class="bn-item"
+        type="button"
+        data-view="library"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="nav-icon"
+          aria-hidden="true"
+        >
+          <path d="M4 4h4v16H4zM10 4h1v16h-1zM14 6l4-1 3 15-4 1z"/>
+        </svg>
+
+        <span>Exercises</span>
+      </button>
+
+
+      <!-- Start Workout -->
+      <button
+        class="bn-fab"
+        id="startWorkoutFab"
+        type="button"
+        aria-label="Start workout"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </button>
+
+
+      <!-- Progress -->
+      <button
+        class="bn-item"
+        type="button"
+        data-view="progress"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="nav-icon"
+          aria-hidden="true"
+        >
+          <path d="M4 19V9m6 10V4m6 15v-7m6 7V11"/>
+        </svg>
+
+        <span>Progress</span>
+      </button>
+
+
+      <!-- History -->
+      <button
+        class="bn-item"
+        type="button"
+        data-view="history"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="nav-icon"
+          aria-hidden="true"
+        >
+          <path d="M3 3v5h5M3.05 13a9 9 0 1 0 2-6.6L3 8"/>
+          <path d="M12 7v5l4 2"/>
+        </svg>
+
+        <span>History</span>
+      </button>
+
+    </nav>
+
+  </div>
+
+
+
+  <!-- ================================================================
+       REST TIMER
+  ================================================================= -->
+
+  <div
+    class="rest-timer hidden"
+    id="restTimer"
+    role="dialog"
+    aria-label="Rest timer"
+    aria-modal="false"
+  >
+
+    <div class="rest-timer-inner">
+
+      <button
+        class="rest-close"
+        id="restTimerClose"
+        type="button"
+        aria-label="Close rest timer"
+      >
+        ×
+      </button>
+
+      <p class="rest-label">Rest</p>
+
+      <p
+        class="rest-time"
+        id="restTimeDisplay"
+        aria-live="polite"
+      >
+        01:30
+      </p>
+
+
+      <!-- Timer presets -->
+      <div
+        class="rest-presets"
+        id="restPresets"
+        aria-label="Rest timer presets"
+      >
+
+        <button type="button" data-sec="30">
+          30s
+        </button>
+
+        <button type="button" data-sec="60">
+          60s
+        </button>
+
+        <button
+          type="button"
+          data-sec="90"
+          class="active"
+        >
+          90s
+        </button>
+
+        <button type="button" data-sec="120">
+          2m
+        </button>
+
+        <button type="button" data-sec="180">
+          3m
+        </button>
+
+      </div>
+
+
+      <!-- Timer controls -->
+      <div class="rest-controls">
+
+        <button
+          class="rest-btn secondary"
+          id="restReset"
+          type="button"
+        >
+          Reset
+        </button>
+
+        <button
+          class="rest-btn primary"
+          id="restToggle"
+          type="button"
+        >
+          Pause
+        </button>
+
+        <button
+          class="rest-btn secondary"
+          id="restAdd15"
+          type="button"
+        >
+          +15s
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================================================================
+       MODAL
+  ================================================================= -->
+
+  <div
+    class="modal-overlay hidden"
+    id="modalOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal"
+      id="modal"
+    ></div>
+
+  </div>
+
+
+
+  <!-- ================================================================
+       TOAST NOTIFICATIONS
+  ================================================================= -->
+
+  <div
+    class="toast-stack"
+    id="toastStack"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+
+  <!-- ================================================================
+       PERSONAL RECORD CELEBRATION
+  ================================================================= -->
+
+  <div
+    class="pr-celebration hidden"
+    id="prCelebration"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="prCelebrationTitle"
+  >
+
+    <div class="pr-celebration-card">
+
+      <div
+        class="pr-burst"
+        aria-hidden="true"
+      >
+        🔥
+      </div>
+
+      <p
+        class="pr-title"
+        id="prCelebrationTitle"
+      >
+        New Personal Record!
+      </p>
+
+      <p
+        class="pr-detail"
+        id="prDetail"
+      ></p>
+
+      <button
+        class="btn primary"
+        id="prCelebrationClose"
+        type="button"
+      >
+        Nice
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================================================================
+       JAVASCRIPT
+       Order matters:
+       Storage → Exercises → UI → Workouts → Progress → App
+  ================================================================= -->
+
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/exercises.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/workouts.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>

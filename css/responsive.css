@@ -1,0 +1,340 @@
+/* =========================================================================
+   IronLog — Responsive layout
+   Mobile-first styles live in style.css.
+
+   These rules progressively enhance the layout for:
+   - Small phones
+   - Tablets
+   - Desktop
+   - Wide desktop
+   - Reduced-motion preferences
+   ========================================================================= */
+
+
+/* =========================================================================
+   SMALL PHONES
+   ========================================================================= */
+
+@media (max-width: 359px) {
+
+    .stat-grid {
+        gap: 8px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+    }
+
+    .views {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .bn-item {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .bn-fab {
+        width: 48px;
+        height: 48px;
+    }
+
+}
+
+
+/* =========================================================================
+   TABLETS
+   ========================================================================= */
+
+@media (min-width: 600px) {
+
+    .views {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+
+    /* Center modals on larger screens */
+
+    .modal-overlay {
+        align-items: center;
+    }
+
+    .modal {
+        border-radius: var(--radius-l);
+        border-bottom: 1px solid var(--border);
+        transform: translateY(0) scale(0.96);
+    }
+
+    .modal-overlay.show .modal {
+        transform: scale(1);
+    }
+
+
+    /* Give buttons a little more comfortable touch area */
+
+    .btn {
+        min-height: 44px;
+    }
+
+}
+
+
+/* =========================================================================
+   DESKTOP / LARGE TABLETS
+   ========================================================================= */
+
+@media (min-width: 900px) {
+
+    /* ---------------------------------------------------------------
+       Navigation
+       --------------------------------------------------------------- */
+
+    .bottom-nav {
+        display: none;
+    }
+
+    .bn-fab {
+        display: none;
+    }
+
+
+    /* ---------------------------------------------------------------
+       Rest timer
+       --------------------------------------------------------------- */
+
+    .rest-timer {
+        display: flex;
+        bottom: 20px;
+    }
+
+
+    /* ---------------------------------------------------------------
+       Sidebar
+       --------------------------------------------------------------- */
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+
+        width: var(--sidebar-w);
+        flex: none;
+
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+
+        padding: 20px 14px;
+
+        position: sticky;
+        top: 0;
+
+        height: 100vh;
+    }
+
+
+    /* Sidebar branding */
+
+    .sidebar-brand {
+        padding: 8px 10px 20px;
+    }
+
+    .brand-mark {
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .brand-mark em {
+        font-style: normal;
+        color: var(--accent);
+    }
+
+
+    /* Sidebar navigation */
+
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        background: none;
+        border: none;
+
+        color: var(--text-dim);
+
+        padding: 11px 12px;
+        border-radius: 10px;
+
+        font-size: 14.5px;
+        font-weight: 600;
+
+        text-align: left;
+
+        transition:
+            background 0.15s ease,
+            color 0.15s ease;
+    }
+
+    .nav-item .nav-icon {
+        width: 19px;
+        height: 19px;
+
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+
+        flex: none;
+    }
+
+    .nav-item:hover {
+        background: var(--surface-2);
+        color: var(--text);
+    }
+
+    .nav-item.active {
+        background: rgba(255, 90, 54, 0.14);
+        color: var(--accent);
+    }
+
+
+    /* Sidebar settings */
+
+    .sidebar-settings {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        background: none;
+        border: none;
+
+        color: var(--text-dim);
+
+        padding: 11px 12px;
+        border-radius: 10px;
+
+        font-size: 14.5px;
+        font-weight: 600;
+
+        text-align: left;
+
+        transition:
+            background 0.15s ease,
+            color 0.15s ease;
+    }
+
+    .sidebar-settings:hover {
+        background: var(--surface-2);
+        color: var(--text);
+    }
+
+    .sidebar-settings .nav-icon {
+        width: 19px;
+        height: 19px;
+
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.9;
+    }
+
+
+    /* ---------------------------------------------------------------
+       Desktop topbar
+       --------------------------------------------------------------- */
+
+    .topbar {
+        display: none;
+    }
+
+    #settingsShortcut,
+    #profileShortcut {
+        display: none;
+    }
+
+
+    /* ---------------------------------------------------------------
+       Main content
+       --------------------------------------------------------------- */
+
+    .views {
+        max-width: 780px;
+
+        padding: 32px 32px 48px;
+    }
+
+
+    /* ---------------------------------------------------------------
+       Dashboard stats
+       --------------------------------------------------------------- */
+
+    .stat-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+
+    /* ---------------------------------------------------------------
+       Form grids
+       --------------------------------------------------------------- */
+
+    .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================================
+   WIDE DESKTOP
+   ========================================================================= */
+
+@media (min-width: 1200px) {
+
+    .views {
+        max-width: 900px;
+    }
+
+}
+
+
+/* =========================================================================
+   ACCESSIBILITY — KEYBOARD FOCUS
+   ========================================================================= */
+
+@media (min-width: 600px) {
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+}
+
+
+/* =========================================================================
+   REDUCED MOTION
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
