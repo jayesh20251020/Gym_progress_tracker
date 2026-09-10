@@ -3,7 +3,7 @@ import secrets
 from datetime import timedelta
 from pathlib import Path, PurePosixPath
 
-from flask import Flask, abort, jsonify, request, send_from_directory
+from flask import Flask, abort, jsonify, redirect, request, send_from_directory, session
 from flask_cors import CORS
 from auth import auth, bcrypt
 from data import data
@@ -109,11 +109,18 @@ def add_security_headers(response):
 
 @app.route("/")
 def home():
-    return send_from_directory(PROJECT_ROOT, "index.html")
+    return main_page()
 
 
 @app.route("/index.html")
 def index_page():
+    return main_page()
+
+
+def main_page():
+    if not session.get("user_id"):
+        return redirect("/auth.html")
+
     return serve_public_file("index.html")
 
 
