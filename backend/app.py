@@ -112,6 +112,11 @@ def home():
     return send_from_directory(PROJECT_ROOT, "index.html")
 
 
+@app.route("/index.html")
+def index_page():
+    return serve_public_file("index.html")
+
+
 @app.route("/auth.html")
 def auth_page():
     return serve_public_file("auth.html")
